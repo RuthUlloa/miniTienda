@@ -53,3 +53,5 @@ C:\Users\Siul Mongalo\documents\visual studio 2015\Projects\testProyecto1BD2\Web
 C:\Users\Siul Mongalo\documents\visual studio 2015\Projects\testProyecto1BD2\WebApplication1\bin\System.Web.Mvc.xml
 C:\Users\Siul Mongalo\documents\visual studio 2015\Projects\testProyecto1BD2\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\Siul Mongalo\documents\visual studio 2015\Projects\testProyecto1BD2\WebApplication1\obj\Debug\WebApplication1.pdb
+C:\Users\Siul Mongalo\documents\visual studio 2015\Projects\testProyecto1BD2\WebApplication1\bin\MongoDB.Driver.GridFS.dll
+C:\Users\Siul Mongalo\documents\visual studio 2015\Projects\testProyecto1BD2\WebApplication1\bin\MongoDB.Driver.GridFS.xml
