@@ -44,5 +44,63 @@ namespace WebApplication1
             
         }
 
+        public List<Usuario> getCliente(String username)
+        {
+            client.Connect();
+
+            var db = client.Cypher
+                .Match("(usuario:Usuario)")
+                .Where((Usuario usuario) => usuario.nombreUsuario == username)
+                .Return(usuario => usuario.As<Usuario>())
+                .Results;
+            return db.AsQueryable().ToList();
+        }
+
+        public Boolean registrarCliente(String name, String lastName, String pass, String email, String userName)
+        {
+            try
+            {
+                var nuevo = new Usuario { nombre = name, apellido = lastName, contrasena = pass, correo = email
+                , nombreUsuario = userName, tipoUsuario = "cliente"};
+                client.Connect();
+                client.Cypher
+                .Create("(usuario:Usuario {nuevo})")
+                .WithParam("nuevo", nuevo)
+                .ExecuteWithoutResults();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public Boolean registrarAdministrador(String name, String lastName, String pass, String email, String userName)
+        {
+            try
+            {
+                var nuevo = new Usuario
+                {
+                    nombre = name,
+                    apellido = lastName,
+                    contrasena = pass,
+                    correo = email
+                ,
+                    nombreUsuario = userName,
+                    tipoUsuario = "admin"
+                };
+                client.Connect();
+                client.Cypher
+                .Create("(usuario:Usuario {nuevo})")
+                .WithParam("nuevo", nuevo)
+                .ExecuteWithoutResults();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

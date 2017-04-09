@@ -10,6 +10,7 @@ namespace WebApplication1.Controllers
     public class UsuarioController : Controller
     {
         private Neo4jDB neo = new Neo4jDB();
+        private Usuario actual = new Usuario();
 
         // GET: Usuario
         public ActionResult Index()
@@ -34,8 +35,19 @@ namespace WebApplication1.Controllers
             try
             {
                 if (neo.logIn(user.nombreUsuario, user.contrasena))
-                { 
-                    return RedirectToAction("Index");
+                {
+                    List<Usuario> usuario = new List<Usuario>();
+                    actual = usuario.ElementAt(0);
+                    usuario = neo.getCliente(user.nombreUsuario);
+                    if (usuario.ElementAt(0).tipoUsuario == "admin")
+                    {
+                        return RedirectToAction("RegistrarAdministrador");
+                    }
+                    else
+                    {
+                        return RedirectToAction("RegistrarCliente");
+                    }
+                    
                 }
                 else
                 {
@@ -49,7 +61,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Usuario/Create
-        public ActionResult Create()
+        public ActionResult RegistrarCliente()
         {
             return View();
         }
@@ -58,13 +70,48 @@ namespace WebApplication1.Controllers
 
         // POST: Usuario/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult RegistrarCliente(Usuario user)
         {
             try
             {
-                // TODO: Add insert logic here
+                if(neo.registrarCliente(user.nombre, user.apellido, user.contrasena, user.correo, user.nombreUsuario))
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
+                
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
-                return RedirectToAction("Index");
+        public ActionResult RegistrarAdministrador()
+        {
+            return View();
+        }
+
+
+
+        // POST: Usuario/Create
+        [HttpPost]
+        public ActionResult RegistrarAdministrador(Usuario user)
+        {
+            try
+            {
+                if (neo.registrarAdministrador(user.nombre, user.apellido, user.contrasena, user.correo, user.nombreUsuario))
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
+
             }
             catch
             {
