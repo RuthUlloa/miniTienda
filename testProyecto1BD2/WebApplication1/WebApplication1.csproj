@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cassandra, Version=3.99.0.0, Culture=neutral, PublicKeyToken=10b231fbfc8c4b4d, processorArchitecture=MSIL">
+      <HintPath>..\packages\CassandraCSharpDriver.3.2.1\lib\net45\Cassandra.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -110,6 +114,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
       <Private>True</Private>
@@ -185,11 +190,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\cassandraController.cs" />
     <Compile Include="Controllers\MongoDBController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CassandraDB.cs" />
+    <Compile Include="Models\Comentario.cs" />
     <Compile Include="Models\MongoDB.cs" />
     <Compile Include="Models\MySQL.cs" />
     <Compile Include="Models\Neo4jDB.cs" />
@@ -213,8 +221,13 @@
     <Content Include="Views\MongoDB\Create.cshtml" />
     <Content Include="Views\Usuario\logIn.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Usuario\RegistrarCliente.cshtml" />
     <Content Include="Views\Usuario\RegistrarAdministrador.cshtml" />
+=======
+    <Content Include="Views\cassandra\Index_old.cshtml" />
+    <Content Include="Views\cassandra\Index.cshtml" />
+>>>>>>> 7d1e64e5357809e66ccc6915307a171e282528ca
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
