@@ -24,8 +24,7 @@ namespace WebApplication1
         public Producto getProducto(int Id)
         {
 
-            //var db = cliente.GetDatabase("miniTiendaDB");
-            var db = cliente.GetDatabase("fs.files");
+            var db = cliente.GetDatabase("miniTiendaDB");
 
             return db.GetCollection<Producto>("Inventario").Find(p => p.IDArticulo == Id).SingleOrDefault();
         }

@@ -35,26 +35,27 @@ namespace WebApplication1.Controllers
             try
             {
                 // TODO: Add insert logic here
-                //if ( fileDir.ContentLength > 0)
-                //{
-                //    byte[] imagenByte = new byte[fileDir.ContentLength];
-                //    using (BinaryReader lector = new BinaryReader(fileDir.InputStream))
-                //    {
-                //        imagenByte = lector.ReadBytes( (int) fileDir.ContentLength);
-                //    }
+                if (fileDir.ContentLength > 0)
+                {
+                    byte[] imagenByte = new byte[fileDir.ContentLength];
+                    using (BinaryReader lector = new BinaryReader(fileDir.InputStream))
+                    {
+                        imagenByte = lector.ReadBytes((int)fileDir.ContentLength);
+                    }
 
                     //string imagenString = Convert.ToBase64String(imagenByte);
-
-                nuevo.imagen = fileDir.InputStream;
+                    
+                    nuevo.imagen = fileDir.InputStream;
                 Mongo.insertarProducto(nuevo);
                 return RedirectToAction("Index");
-               // }
-               // return RedirectToAction("Index");
+                }
+                // return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
+            return View();
         }
 
         // GET: MongoDB/Edit/5
