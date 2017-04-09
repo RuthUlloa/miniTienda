@@ -29,14 +29,12 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public ActionResult logIn(String nombre, String pass)
+        public ActionResult logIn(Usuario user)
         {
             try
             {
-                List<Usuario> entro = neo.logIn(nombre, pass);
-
-                if (entro.Count == 1)
-                {
+                if (neo.logIn(user.nombreUsuario, user.contrasena))
+                { 
                     return RedirectToAction("Index");
                 }
                 else

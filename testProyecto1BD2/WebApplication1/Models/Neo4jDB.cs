@@ -22,14 +22,26 @@ namespace WebApplication1
 
         }
 
-        public List<Usuario> logIn(String name, String pass)
+        public Boolean logIn(String name, String pass)
         {
             client.Connect();
 
-            var db = client.Cypher.Match("(usuario:Usuario)").Where((Usuario usuario) => usuario.nombreUsuario == name).AndWhere((Usuario usuario) => usuario.contrasena == pass).Return(usuario => usuario.As<Usuario>()).Results;
+            var db = client.Cypher.Match("(usuario:Usuario)")
+                .Where((Usuario usuario) => usuario.nombreUsuario == name)
+                .AndWhere((Usuario usuario) => usuario.contrasena == pass)
+                .Return(usuario => usuario.As<Usuario>())
+                .Results;
 
-            return db.AsQueryable().ToList();
+            if (db.AsQueryable().ToList().Count == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
 
+            }
+            
         }
 
     }
