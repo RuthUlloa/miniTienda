@@ -96,6 +96,7 @@
       <HintPath>..\packages\mongocsharpdriver.2.4.3\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="Neo4jClient, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Neo4jClient.2.0.0.7\lib\net45\Neo4jClient.dll</HintPath>
       <Private>True</Private>
@@ -190,6 +191,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\MongoDB.cs" />
+    <Compile Include="Models\MySQL.cs" />
     <Compile Include="Models\Neo4jDB.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\Redis.cs" />
